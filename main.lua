@@ -4,7 +4,7 @@ local ballX, ballY -- Variables to store the position of the ball in the screen 
 local ballSpeed -- Variable to store the ball speed (Uncomment at the start of TODO 8)
 local playerX, playerY, cpuX, cpuY -- Variables to store the position of the player and cpu paddle (Uncomment at the start of TODO 10)
 local paddleSpeed -- Variable to store the paddle speed (Uncomment at the start of TODO 12)
---local ballAngle -- Variable to estore the ball movement angle (Uncomment at the start of TODO 16)
+local ballAngle -- Variable to estore the ball movement angle (Uncomment at the start of TODO 16)
 --local playerPoints, cpuPoints -- Variable to store the player and cpu points (Uncomment at the start of TODO 21)
 
 function love.load(arg)
@@ -30,7 +30,7 @@ function love.load(arg)
   -- TODO 12: Initialize the paddle speed
   paddleSpeed = 1.5
   -- TODO 16: Initialize the ball angle
-  
+  ballAngle = 0
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
   
   -- TODO 21: Initialize the player and cpu points variables
@@ -38,9 +38,11 @@ end
 
 function love.update(dt)
   -- TODO 9: Make the ball move using the ballSpeed variable
-  ballX = ballX + ballSpeed
+  --ballX = ballX + ballSpeed
   -- TODO 17: Comment all the code of the TODO 9 and make the ball move using the ballAngle variable
-  
+  math.randomseed(os.time())
+  ballX = ballX + ballSpeed * math.cos(ballAngle * math.pi/180)
+  ballY = ballY + ballSpeed * math.sin(ballAngle * math.pi/180)
   -- TODO 13: Move the player paddle getting the up and down arrows keys of the keyboard using the variable paddleSpeed
   if love.keyboard.isDown("down") then
     playerY = playerY + paddleSpeed
@@ -48,11 +50,20 @@ function love.update(dt)
   if love.keyboard.isDown("up") then
     playerY = playerY - paddleSpeed
   end
-    
+  
   -- TODO 14: Detect the ball collision with the player paddle and make it bounce
-  
+  if ballX <= playerX and (ballY + 50) >= playerY and ballY < (playerY + 50) then
+    ballSpeed = math.abs(ballSpeed)
+    ballAngle = math.random(-45,45) --Added after TODO 17
+    end
+   
   -- TODO 15: Detect the ball collision with the cpu paddle and make it bounce
+  if ballX >= cpuX and (ballY + 50) >= cpuY and ballY < (cpuY + 50) then
+    ballSpeed = -ballSpeed
+    ballAngle = math.random(-45,45) --Added after TODO 17
+    end
   
+
   -- TODO 25: Add the needed code at TODO 19 to make the ball quicker at paddle collision
   -- TODO 19: Comment all the code of the TODO 14 and TODO 15 and make it bounce using the new ball angle
   
