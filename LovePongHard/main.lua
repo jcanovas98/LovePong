@@ -173,3 +173,4 @@ function love.draw()
   love.graphics.print( playerPoints, love.graphics.getWidth() / 2 - 45, 20, 0, 1, 1, 0, 0, 0, 0 )
   love.graphics.print( cpuPoints, love.graphics.getWidth() / 2 + 20, 20, 0, 1, 1, 0, 0, 0, 0 )
 end
+-- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
