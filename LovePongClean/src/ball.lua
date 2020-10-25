@@ -15,7 +15,7 @@ function Ball:update(dt)
 end
 
 function Ball:draw()
-   love.graphics.circle( "fill", ballX, ballY, 8)
+   love.graphics.circle( "fill", ballX, ballY, ballRadius)
 end
 
 function Ball:getX()
@@ -46,7 +46,7 @@ function Ball:reset()
   ballX = love.graphics.getWidth()/2
   ballY = love.graphics.getHeight()/2
   ballAngle = math.rad(math.random(150,210))
-  ballSpeed = 1.5
+  ballSpeed = initialSpeed
 end
 
 return Ball

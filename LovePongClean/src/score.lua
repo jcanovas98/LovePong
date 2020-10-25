@@ -6,10 +6,10 @@ local position
 function Score:new(pos)
   self.points = 0
   if(pos) then
-    self.position = -45
+    self.position = playerScorePos
   end
   if(not pos) then
-    self.position = 20
+    self.position = cpuScorePos
   end
 end
 
