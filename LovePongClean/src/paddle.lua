@@ -5,9 +5,9 @@ local paddleY
 local paddleSpeed
 
 function Paddle:new(x, y)
-  paddleX = x
-  paddleY = y
-  paddleSpeed = 1.5
+  self.paddleX = x
+  self.paddleY = y
+  self.paddleSpeed = 1.5
 end
 
 function Paddle:update(dt)
@@ -15,27 +15,27 @@ function Paddle:update(dt)
 end
 
 function Paddle:draw()
-  love.graphics.rectangle( "fill", paddleX, paddleY, 10, 50 )
+  love.graphics.rectangle( "fill", self.paddleX, self.paddleY, 10, 50 )
 end
 
 function Paddle:up()
-  paddleY = paddleY - paddleSpeed
+  self.paddleY = self.paddleY - self.paddleSpeed
 end
 
 function Paddle:down()
-  paddleY = paddleY + paddleSpeed
+  self.paddleY = self.paddleY + self.paddleSpeed
 end
 
 function Paddle:getX()
-  return paddleX
+  return self.paddleX
 end
 
 function Paddle:getY()
-  return paddleY
+  return self.paddleY
 end
 
 function Paddle:setY(y)
-  paddleY = y
+  self.paddleY = y
 end
 
 
