@@ -3,9 +3,10 @@ local Ball = Object:extend()
 local ballX, ballY
 local ballSpeed
 local ballAngle
-local BallImage = love.graphics.newImage("basketball2.png")
+local ballImage
 
 function Ball:new()
+  ballImage = love.graphics.newImage("textures/basketball2.png")
   Ball:reset()
 end
 
@@ -16,8 +17,7 @@ function Ball:update(dt)
 end
 
 function Ball:draw()
-   -- love.graphics.circle( "fill", ballX, ballY, ballRadius)
-   love.graphics.draw(BallImage, ballX, ballY, ballRadius)
+   love.graphics.draw(ballImage, ballX, ballY, ballRadius)
 end
 
 function Ball:getX()

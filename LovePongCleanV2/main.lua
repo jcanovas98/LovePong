@@ -80,11 +80,6 @@ function changeAngle(a, s, t)
   end
 end
 
-function os.sleep(sec)
-  local now = os.time() + sec
-  repeat until os.time() >= now
-end
-
 function scoreCheck()
   if b:getX() > screenWidth then 
     pPoints:increasePoint()
@@ -97,7 +92,5 @@ function scoreCheck()
   end
 end
 
-
-
--- -- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
+-- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
 

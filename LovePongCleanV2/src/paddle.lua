@@ -3,9 +3,10 @@ local Paddle = Object:extend()
 local paddleX
 local paddleY
 local paddleSpeed
-local pinkPaddle = love.graphics.newImage("PinkPaddle.png")
+local pinkPaddle
 
 function Paddle:new(x, y)
+  self.pinkPaddle = love.graphics.newImage("textures/PinkPaddle.png")
   self.paddleX = x
   self.paddleY = y
   self.paddleSpeed = initialSpeed
@@ -17,7 +18,7 @@ end
 
 function Paddle:draw()
   -- love.graphics.rectangle( "fill", self.paddleX, self.paddleY, paddleWidth, paddleHeight)
-  love.graphics.draw(pinkPaddle, self.paddleX, self.paddleY, 0, paddleWidth, paddleHeight)
+  love.graphics.draw(self.pinkPaddle, self.paddleX, self.paddleY, 0, paddleWidth, paddleHeight)
 end
 
 function Paddle:up()
