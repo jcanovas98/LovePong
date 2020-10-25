@@ -49,9 +49,8 @@ function love.update(dt)
 end
 end
 function love.draw()
-  love.graphics.print("\n \n \n \n \t      LOVE PONG \nPRESS ENTER TO START PLAYING")
+  love.graphics.print("\n \n \n \n \t      LOVE PONG \nPRESS ENTER TO START PLAYING\n PRESS ESC TO EXIT THE GAME")
 
-  
   if isPlaying then
   love.graphics.clear()
   love.graphics.line(screenWidth/2, 0, screenWidth/2, screenHeight)
@@ -113,6 +112,9 @@ function mainMenu()
     if love.keyboard.isDown("return") then
       love.graphics.clear()
       isPlaying = true
+    end
+    if love.keyboard.isDown("escape") then
+      os.exit()
     end
   end
 
