@@ -75,6 +75,7 @@ function love.update(dt)
   pDeltaX = ballX - math.max(playerX, math.min(ballX, playerX + 10))
   pDeltaY = ballY - math.max(playerY, math.min(ballY, playerY + 50))
   if(pDeltaX * pDeltaX + pDeltaY * pDeltaY) < (8 * 8) then
+    ballSpeed = ballSpeed + 1
     if ballAngle == math.rad(180) then
       ballAngle = math.rad(0)
     end
@@ -89,6 +90,7 @@ function love.update(dt)
   cpuDeltaX = ballX - math.max(cpuX, math.min(ballX, cpuX + 10))
   cpuDeltaY = ballY - math.max(cpuY, math.min(ballY, cpuY + 50))
   if(cpuDeltaX * cpuDeltaX + cpuDeltaY * cpuDeltaY) < (8 * 8) then
+    ballSpeed = ballSpeed + 1
     if ballAngle == math.rad(0) then
       ballAngle = math.rad(180)
     end
@@ -103,23 +105,19 @@ function love.update(dt)
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   if ballY < 8 then
     if ballAngle > math.rad(270) then
-     -- ballAngle = ballAngle - math.rad(300)
      ballAngle = math.rad(45)
     end
 
     if ballAngle < math.rad(270) then
-      --ballAngle = ballAngle + math.rad(240)
       ballAngle = math.rad(135)
     end
   end
   if ballY > love.graphics.getHeight() - 8 then
       if ballAngle > math.rad(90) then
-     -- ballAngle = ballAngle - math.rad(60)
      ballAngle = math.rad(225)
     end
     
     if ballAngle < math.rad(90) then
-     -- ballAngle = ballAngle + math.rad(120)
      ballAngle = math.rad(315)
     end
 
@@ -127,7 +125,6 @@ function love.update(dt)
   
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
   -- TODO 23: Detect the ball collision with the player and cpu sides, increse the points accordingly and reset the ball
-  
   -- TODO 24: Make the cpu paddle move to get the ball
   cpuY = ballY
 end
