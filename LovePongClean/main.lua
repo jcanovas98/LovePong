@@ -161,7 +161,7 @@ function love.draw()
   
   --love.graphics.print( "0", love.graphics.getWidth() / 2 + 20, 20, 0, 1, 1, 0, 0, 0, 0 )
   -- TODO 7: Comment all the code of the TODO 2 and use the ballX and ballY variables to draw the ball
-  love.graphics.circle( "fill", ballX, ballY, 8)
+  -- CLEAN love.graphics.circle( "fill", ballX, ballY, 8)
   -- TODO 11: Comment all the code of the TODO 3 and use the playerX, playerY, cpuX and cpuY variables to draw the player and cpu paddles
   love.graphics.rectangle( "fill", playerX, playerY, 10, 50 )
   
