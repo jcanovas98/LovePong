@@ -30,7 +30,7 @@ function love.load(arg)
   -- TODO 12: Initialize the paddle speed
   paddleSpeed = 1.5
   -- TODO 16: Initialize the ball angle
-  ballAngle = 0
+  ballAngle = math.rad(220)
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
   ballSpeed = 1.5
   -- TODO 21: Initialize the player and cpu points variables
@@ -43,8 +43,8 @@ function love.update(dt)
   --ballX = ballX + ballSpeed
   -- TODO 17: Comment all the code of the TODO 9 and make the ball move using the ballAngle variable
   math.randomseed(os.time())
-  ballX = ballX + ballSpeed * math.cos(ballAngle * math.pi/180)
-  ballY = ballY + ballSpeed * math.sin(ballAngle * math.pi/180)
+  ballX = ballX + ballSpeed * math.cos(ballAngle)
+  ballY = ballY + ballSpeed * math.sin(ballAngle)
   -- TODO 13: Move the player paddle getting the up and down arrows keys of the keyboard using the variable paddleSpeed
   if love.keyboard.isDown("down") then
     playerY = playerY + paddleSpeed
@@ -54,33 +54,78 @@ function love.update(dt)
   end
   
   -- TODO 14: Detect the ball collision with the player paddle and make it bounce
-  --if ballX <= playerX and (ballY + 50) >= playerY and ballY < (playerY + 50) then
-  --  ballSpeed = math.abs(ballSpeed)
-  -- end
+  --[[pDeltaX = ballX - math.max(playerX, math.min(ballX, playerX + 10))
+  pDeltaY = ballY - math.max(playerY, math.min(ballY, playerY + 50))
+  if(pDeltaX * pDeltaX + pDeltaY * pDeltaY) < (8 * 8) then
+    ballSpeed = math.abs(ballSpeed)
+  end
+  --]]
   
   -- TODO 15: Detect the ball collision with the cpu paddle and make it bounce
-  -- if ballX >= cpuX and (ballY + 50) >= cpuY and ballY < (cpuY + 50) then
-  -- ballSpeed = -ballSpeed
-  --end
+  --[[cpuDeltaX = ballX - math.max(cpuX, math.min(ballX, cpuX + 10))
+  cpuDeltaY = ballY - math.max(cpuY, math.min(ballY, cpuY + 50))
+  if(cpuDeltaX * cpuDeltaX + cpuDeltaY * cpuDeltaY) < (8 * 8) then
+    ballSpeed = -ballSpeed
+  end
+  --]]
 
   -- TODO 25: Add the needed code at TODO 19 to make the ball quicker at paddle collision
   -- TODO 19: Comment all the code of the TODO 14 and TODO 15 and make it bounce using the new ball angle
   
-  if ballX <= playerX and (ballY + 50) >= playerY and ballY < (playerY + 50) then
-    ballSpeed = math.abs(ballSpeed)
-    ballAngle = math.random(-45,45)
+  pDeltaX = ballX - math.max(playerX, math.min(ballX, playerX + 10))
+  pDeltaY = ballY - math.max(playerY, math.min(ballY, playerY + 50))
+  if(pDeltaX * pDeltaX + pDeltaY * pDeltaY) < (8 * 8) then
+    if ballAngle == math.rad(180) then
+      ballAngle = math.rad(0)
+    end
+        if ballAngle > math.rad(180) then
+      ballAngle = ballAngle - math.rad(210)
+    end
+    if ballAngle < math.rad(180) then
+      ballAngle = ballAngle - math.rad(150)
+      end
   end
-  
-  if ballX >= cpuX and (ballY + 50) >= cpuY and ballY < (cpuY + 50) then
-    ballSpeed = -ballSpeed
-     ballAngle = math.random(-45,45)
+
+  cpuDeltaX = ballX - math.max(cpuX, math.min(ballX, cpuX + 10))
+  cpuDeltaY = ballY - math.max(cpuY, math.min(ballY, cpuY + 50))
+  if(cpuDeltaX * cpuDeltaX + cpuDeltaY * cpuDeltaY) < (8 * 8) then
+    if ballAngle == math.rad(0) then
+      ballAngle = math.rad(180)
+    end
+        if ballAngle > math.rad(0) then
+      ballAngle = ballAngle - math.rad(330)
+    end
+    if ballAngle < math.rad(0) then
+      ballAngle = ballAngle - math.rad(30)
+      end
   end
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
+  if ballY < 8 then
+    if ballAngle > math.rad(270) then
+      ballAngle = ballAngle - math.rad(300)
+    end
+    
+    if ballAnglez < math.rad(270) then
+      ballAngle = ballAngle + math.rad(240)
+    end
+  end
+  print(ballY) --TEST PURPOSE
+  if ballY > love.graphics.getHeight() - 8 then
+      if ballAngle > math.rad(90) then
+      ballAngle = ballAngle - math.rad(60)
+    end
+    
+    if ballAngle < math.rad(90) then
+      ballAngle = ballAngle + math.rad(120)
+    end
+
+  end
   
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
   -- TODO 23: Detect the ball collision with the player and cpu sides, increse the points accordingly and reset the ball
   
   -- TODO 24: Make the cpu paddle move to get the ball
+  cpuY = ballY
 end
 
 function love.draw()
