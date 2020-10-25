@@ -77,13 +77,10 @@ function love.update(dt)
   pDeltaY = ballY - math.max(playerY, math.min(ballY, playerY + 50))
   if(pDeltaX * pDeltaX + pDeltaY * pDeltaY) < (8 * 8) then
     ballSpeed = ballSpeed + 1
-    if ballAngle == math.rad(180) then
-      ballAngle = math.rad(0)
-    end
-        if ballAngle > math.rad(180) then
+    if ballAngle >= math.rad(180) and math.rad(180) > (ballAngle - 90) then
       ballAngle = math.rad(315)
     end
-    if ballAngle < math.rad(180) then
+    if ballAngle < math.rad(180) and math.rad(180) < (ballAngle + 90) then
       ballAngle = math.rad(45)
       end
   end
@@ -92,33 +89,29 @@ function love.update(dt)
   cpuDeltaY = ballY - math.max(cpuY, math.min(ballY, cpuY + 50))
   if(cpuDeltaX * cpuDeltaX + cpuDeltaY * cpuDeltaY) < (8 * 8) then
     ballSpeed = ballSpeed + 1
-    if ballAngle == math.rad(0) then
-      ballAngle = math.rad(180)
-    end
-        if ballAngle > math.rad(0) then
+    if ballAngle >= math.rad(0) and math.rad(0) > (ballAngle - 90) then
       ballAngle = math.rad(225)
     end
-    if ballAngle < math.rad(0) then
+    if ballAngle < math.rad(0) and math.rad(0) < (ballAngle + 90) then
       ballAngle = math.rad(135)
       end
   end
   
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   if ballY < 8 then
-    if ballAngle > math.rad(270) then
-     ballAngle = math.rad(135)
+    if ballAngle >= math.rad(270) and math.rad(270) > (ballAngle - 90) then
+     ballAngle = math.rad(45)
     end
-
-    if ballAngle < math.rad(270) then
-      ballAngle = math.rad(45)
+    if ballAngle < math.rad(270) and math.rad(270) < (ballAngle + 90) then
+      ballAngle = math.rad(135)
     end
   end
+  
   if ballY > love.graphics.getHeight() - 8 then
-      if ballAngle > math.rad(90) then
+      if ballAngle >= math.rad(90) and math.rad(90) > (ballAngle - 90) then
      ballAngle = math.rad(225)
     end
-    
-    if ballAngle < math.rad(90) then
+    if ballAngle < math.rad(90) and math.rad(90) < (ballAngle + 90) then
      ballAngle = math.rad(315)
     end
 
