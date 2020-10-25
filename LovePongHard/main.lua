@@ -129,16 +129,16 @@ function love.update(dt)
   if ballX > love.graphics.getWidth() then 
     playerPoints = playerPoints + 1
     ballSpeed = 1.5
-    ballX = 400
-    ballY = 300
+    ballX = love.graphics.getWidth()/2
+    ballY = love.graphics.getHeight()/2
     ballAngle = math.rad(math.random(150,210))
   end
   
   if ballX < 0 then
     cpuPoints = cpuPoints + 1
     ballSpeed = 1.5
-    ballX = 400
-    ballY = 300
+    ballX = love.graphics.getWidth()/2
+    ballY = love.graphics.getHeight()/2
     ballAngle = math.rad(math.random(150,210))
   end
   
