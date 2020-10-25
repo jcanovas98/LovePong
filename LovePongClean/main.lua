@@ -29,18 +29,18 @@ function love.update(dt)
   if love.keyboard.isDown("up") then
     p:up()
   end
-  
+    
   pDeltaX = b:getX() - math.max(p:getX(), math.min(b:getX(), p:getX() + 10))
-  pDeltaY = b:getY() - math.max(p:getY(), math.min(b:getY(), p:getX() + 50))
+  pDeltaY = b:getY() - math.max(p:getY(), math.min(b:getY(), p:getY() + 50))
   if(pDeltaX * pDeltaX + pDeltaY * pDeltaY) < (8 * 8) then
     b:increaseSpeed()
-    if b:getAngle() == math.rad(180) then
+    if b:getAngle() == 180 then
       b:setAngle(0)
     end
-    if b:getAngle() > math.rad(180) then
+    if b:getAngle() > 180 then
       b:setAngle(315)
     end
-    if b:getAngle() < math.rad(180) then
+    if b:getAngle() < 180 then
       b:setAngle(45)
       end
   end
@@ -49,32 +49,34 @@ function love.update(dt)
   cpuDeltaY = b:getY() - math.max(cpu:getY(), math.min(b:getY(), cpu:getY() + 50))
   if(cpuDeltaX * cpuDeltaX + cpuDeltaY * cpuDeltaY) < (8 * 8) then
     b:increaseSpeed()
-    if b:getAngle() == math.rad(0) then
+    if b:getAngle() == 0 then
       b:setAngle(180)
     end
-    if b:getAngle() > math.rad(0) then
+    if b:getAngle() > 0 then
       b:setAngle(225)
     end
-    if b:getAngle() < math.rad(0) then
+    if b:getAngle() < 0 then
       b:setAngle(135)
       end
   end
   
   if b:getY() < 8 then
-    if b:getAngle() > math.rad(270) then
-     b:setAngle(45)
+    print("up")
+    if b:getAngle() > 270 then
+     b:setAngle(135)
     end
 
-    if b:getAngle() < math.rad(270) then
-      b:setAngle(135)
+    if b:getAngle() < 270 then
+      b:setAngle(45)
     end
   end
   if b:getY() > h - 8 then
-    if b:getAngle() > math.rad(90) then
+    print("down")
+    if b:getAngle() > 90 then
      b:setAngle(225)
     end
     
-    if b:getAngle() < math.rad(90) then
+    if b:getAngle() < 90 then
      b:setAngle(315)
     end
   end

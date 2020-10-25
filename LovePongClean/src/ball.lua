@@ -35,7 +35,7 @@ function Ball:getSpeed()
 end
 
 function Ball:getAngle()
-  return ballAngle
+  return ballAngle/math.pi*180
 end
 
 function Ball:setAngle(a)

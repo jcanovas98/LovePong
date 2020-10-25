@@ -106,11 +106,11 @@ function love.update(dt)
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   if ballY < 8 then
     if ballAngle > math.rad(270) then
-     ballAngle = math.rad(45)
+     ballAngle = math.rad(135)
     end
 
     if ballAngle < math.rad(270) then
-      ballAngle = math.rad(135)
+      ballAngle = math.rad(45)
     end
   end
   if ballY > love.graphics.getHeight() - 8 then
