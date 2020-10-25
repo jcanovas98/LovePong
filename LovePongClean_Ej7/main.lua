@@ -8,8 +8,6 @@ local CpuPoints = Score or require ("src/score")
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
-  w, h = love.graphics.getDimensions() -- Get the screen width and height
-  
   font = love.graphics.newFont( "pong.ttf", 50, "normal", love.graphics.getDPIScale() )
 
   love.graphics.setFont(font)
