@@ -4,7 +4,7 @@ local Player = Paddle or require ("src/paddle")
 local CpuPlayer = Paddle or require ("src/paddle")
 local PlayerPoints = Score or require ("src/score")
 local CpuPoints = Score or require ("src/score")
-isPlaying = false
+local isPlaying 
 
 
 
@@ -14,7 +14,7 @@ function love.load(arg)
   
   font = love.graphics.newFont( "pong.ttf", 50, "normal", love.graphics.getDPIScale() )
 
-
+  isPlaying = "notPlaying"
   love.graphics.setFont(font)
   
   b = Ball()
@@ -28,11 +28,11 @@ function love.load(arg)
 
 function love.update(dt)
   
-  if not isPlaying then
+  if isPlaying == "notPlaying" then
     mainMenu()
   end
   
-  if isPlaying then
+  if isPlaying == "playing" then
   b:update(dt)
   if love.keyboard.isDown("down") then
     p:down()
@@ -47,11 +47,22 @@ function love.update(dt)
   
   cpu:setY(b:getY())
 end
+gameOver()
+victory()
 end
 function love.draw()
   love.graphics.print("\n \n \n \n \t      LOVE PONG \nPRESS ENTER TO START PLAYING\n PRESS ESC TO EXIT THE GAME")
-
-  if isPlaying then
+  if isPlaying == "gameOver" then
+    love.graphics.clear()
+    love.graphics.print("\n \n \n \n \t     GAME OVER! \n   PRESS ENTER TO CONTINUE\n PRESS ESC TO EXIT THE GAME")
+  end
+  
+  if isPlaying == "victory" then
+    love.graphics.clear()
+    love.graphics.print("\n \n \n \n \t      YOU WON!   \n   PRESS ENTER TO CONTINUE\n PRESS ESC TO EXIT THE GAME")
+  end
+  
+  if isPlaying == "playing" then
   love.graphics.clear()
   love.graphics.line(screenWidth/2, 0, screenWidth/2, screenHeight)
   b:draw()
@@ -61,6 +72,7 @@ function love.draw()
   cpuPoints:draw()
 end
 end
+
 
 function paddleCollisionCheck()
     pDeltaX = b:getX() - math.max(p:getX(), math.min(b:getX(), p:getX() + paddleHitboxX))
@@ -110,8 +122,7 @@ end
 
 function mainMenu()
     if love.keyboard.isDown("return") then
-      love.graphics.clear()
-      isPlaying = true
+      isPlaying = "playing"
     end
     if love.keyboard.isDown("escape") then
       os.exit()
@@ -119,6 +130,36 @@ function mainMenu()
   end
 
 
+function gameOver()
+  if cpuPoints:getPoints() == 1 or isPlaying == "gameOver" then
+    isPlaying = "gameOver"
+    if love.keyboard.isDown("return") then
+      isPlaying = "playing"
+      pPoints:newGame()
+      cpuPoints:newGame()
+      b:reset()
+    end
+    if love.keyboard.isDown("escape") then
+      os.exit()
+    end
+  end
+  end
+
+
+function victory()
+  if pPoints:getPoints() == 1 or isPlaying == "victory" then
+    isPlaying = "victory"
+    if love.keyboard.isDown("return") then
+      isPlaying = "playing"
+      pPoints:newGame()
+      cpuPoints:newGame()
+      b:reset()
+    end
+    if love.keyboard.isDown("escape") then
+      os.exit()
+    end
+  end
+  end
 
 -- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
 

@@ -29,4 +29,8 @@ function Score:getPoints()
   return self.points
 end
 
+function Score:newGame()
+  self.points = 0
+end
+
 return Score
