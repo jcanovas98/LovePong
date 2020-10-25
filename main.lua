@@ -30,9 +30,9 @@ function love.load(arg)
   -- TODO 12: Initialize the paddle speed
   paddleSpeed = 1.5
   -- TODO 16: Initialize the ball angle
-  ballAngle = math.rad(220)
+  ballAngle = math.rad(160)
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-  ballSpeed = 1.5
+  ballSpeed = 2
   -- TODO 21: Initialize the player and cpu points variables
   playerPoints = 0
   cpuPoints = 0
@@ -79,10 +79,10 @@ function love.update(dt)
       ballAngle = math.rad(0)
     end
         if ballAngle > math.rad(180) then
-      ballAngle = ballAngle - math.rad(210)
+      ballAngle = math.rad(315)
     end
     if ballAngle < math.rad(180) then
-      ballAngle = ballAngle - math.rad(150)
+      ballAngle = math.rad(45)
       end
   end
 
@@ -93,30 +93,34 @@ function love.update(dt)
       ballAngle = math.rad(180)
     end
         if ballAngle > math.rad(0) then
-      ballAngle = ballAngle - math.rad(330)
+      ballAngle = math.rad(225)
     end
     if ballAngle < math.rad(0) then
-      ballAngle = ballAngle - math.rad(30)
+      ballAngle = math.rad(135)
       end
   end
+     print (ballAngle)
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   if ballY < 8 then
     if ballAngle > math.rad(270) then
-      ballAngle = ballAngle - math.rad(300)
+     -- ballAngle = ballAngle - math.rad(300)
+     ballAngle = math.rad(45)
     end
-    
-    if ballAnglez < math.rad(270) then
-      ballAngle = ballAngle + math.rad(240)
+
+    if ballAngle < math.rad(270) then
+      --ballAngle = ballAngle + math.rad(240)
+      ballAngle = math.rad(135)
     end
   end
-  print(ballY) --TEST PURPOSE
   if ballY > love.graphics.getHeight() - 8 then
       if ballAngle > math.rad(90) then
-      ballAngle = ballAngle - math.rad(60)
+     -- ballAngle = ballAngle - math.rad(60)
+     ballAngle = math.rad(225)
     end
     
     if ballAngle < math.rad(90) then
-      ballAngle = ballAngle + math.rad(120)
+     -- ballAngle = ballAngle + math.rad(120)
+     ballAngle = math.rad(315)
     end
 
   end
