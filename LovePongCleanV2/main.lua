@@ -4,24 +4,35 @@ local Player = Paddle or require ("src/paddle")
 local CpuPlayer = Paddle or require ("src/paddle")
 local PlayerPoints = Score or require ("src/score")
 local CpuPoints = Score or require ("src/score")
+isPlaying = false
+
+
 
 function love.load(arg)
-  if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
-  w, h = love.graphics.getDimensions() -- Get the screen width and height
+  if arg[#arg] == "-debug" then require("mobdebug").start() end -- Enable the debugging with ZeroBrane Studio
   
   font = love.graphics.newFont( "pong.ttf", 50, "normal", love.graphics.getDPIScale() )
 
+
   love.graphics.setFont(font)
+  
   b = Ball()
   p = Player(playerSpawnX, playerSpawnY)
   cpu = CpuPlayer(cpuSpawnX, cpuSpawnY)
   math.randomseed(os.time())
   pPoints = PlayerPoints(true)
   cpuPoints = PlayerPoints(false)
-end
+  end
+
 
 function love.update(dt)
+  
+  if not isPlaying then
+    mainMenu()
+  end
+  
+  if isPlaying then
   b:update(dt)
   if love.keyboard.isDown("down") then
     p:down()
@@ -36,14 +47,20 @@ function love.update(dt)
   
   cpu:setY(b:getY())
 end
-
+end
 function love.draw()
+  love.graphics.print("\n \n \n \n \t      LOVE PONG \nPRESS ENTER TO START PLAYING")
+
+  
+  if isPlaying then
+  love.graphics.clear()
   love.graphics.line(screenWidth/2, 0, screenWidth/2, screenHeight)
   b:draw()
   p:draw()
   cpu:draw()
   pPoints:draw()
   cpuPoints:draw()
+end
 end
 
 function paddleCollisionCheck()
@@ -92,5 +109,15 @@ function scoreCheck()
   end
 end
 
+function mainMenu()
+    if love.keyboard.isDown("return") then
+      love.graphics.clear()
+      isPlaying = true
+    end
+  end
+
+
+
 -- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
+
 
