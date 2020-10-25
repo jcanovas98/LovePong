@@ -30,9 +30,10 @@ function love.load(arg)
   -- TODO 12: Initialize the paddle speed
   paddleSpeed = 1.5
   -- TODO 16: Initialize the ball angle
-  ballAngle = math.rad(160)
+  math.randomseed(os.time())
+  ballAngle = math.rad(math.random(150,210))
   -- TODO 18: Comment all the code of the TODO 8 and initialize the ball speed without sign
-  ballSpeed = 2
+  ballSpeed = 1.5
   -- TODO 21: Initialize the player and cpu points variables
   playerPoints = 0
   cpuPoints = 0
@@ -101,7 +102,7 @@ function love.update(dt)
       ballAngle = math.rad(135)
       end
   end
-     print (ballAngle)
+  
   -- TODO 20: Detect the ball collision with the top and bottom of the field and make it bounce
   if ballY < 8 then
     if ballAngle > math.rad(270) then
@@ -125,6 +126,23 @@ function love.update(dt)
   
   -- TODO 26: Add the needed code at TODO 23 to reset the ball speed
   -- TODO 23: Detect the ball collision with the player and cpu sides, increse the points accordingly and reset the ball
+  if ballX > love.graphics.getWidth() then 
+    playerPoints = playerPoints + 1
+    ballSpeed = 1.5
+    ballX = 400
+    ballY = 300
+    ballAngle = math.rad(math.random(150,210))
+  end
+  
+  if ballX < 0 then
+    cpuPoints = cpuPoints + 1
+    ballSpeed = 1.5
+    ballX = 400
+    ballY = 300
+    ballAngle = math.rad(math.random(150,210))
+  end
+  
+
   -- TODO 24: Make the cpu paddle move to get the ball
   cpuY = ballY
 end
