@@ -47,15 +47,15 @@ function love.draw()
 end
 
 function paddleCollisionCheck()
-    pDeltaX = b:getX() - math.max(p:getX(), math.min(b:getX(), p:getX() + paddleWidth))
-    pDeltaY = b:getY() - math.max(p:getY(), math.min(b:getY(), p:getY() + paddleHeight))
+    pDeltaX = b:getX() - math.max(p:getX(), math.min(b:getX(), p:getX() + paddleHitboxX))
+    pDeltaY = b:getY() - math.max(p:getY(), math.min(b:getY(), p:getY() + paddleHitboxY))
     if(pDeltaX * pDeltaX + pDeltaY * pDeltaY) < (ballRadius * ballRadius) then
     b:increaseSpeed()
     changeAngle(180, 315, 45)
   end
 
-  cpuDeltaX = b:getX() - math.max(cpu:getX(), math.min(b:getX(), cpu:getX() + paddleWidth))
-  cpuDeltaY = b:getY() - math.max(cpu:getY(), math.min(b:getY(), cpu:getY() + paddleHeight))
+  cpuDeltaX = b:getX() - math.max(cpu:getX(), math.min(b:getX(), cpu:getX() + paddleHitboxX))
+  cpuDeltaY = b:getY() - math.max(cpu:getY(), math.min(b:getY(), cpu:getY() + paddleHitboxY))
   if(cpuDeltaX * cpuDeltaX + cpuDeltaY * cpuDeltaY) < (ballRadius * ballRadius) then
     b:increaseSpeed()
     changeAngle(0, 135, 225)
@@ -96,3 +96,8 @@ function scoreCheck()
     b:reset()
   end
 end
+
+
+
+-- -- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
+

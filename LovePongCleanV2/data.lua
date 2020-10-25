@@ -1,5 +1,7 @@
-paddleWidth = 10
-paddleHeight = 50
+paddleWidth = 1
+paddleHeight = 1
+paddleHitboxX = 10
+paddleHitboxY = 50
 initialSpeed = 1.5
 ballRadius = 8
 screenWidth, screenHeight = love.graphics.getDimensions()
