@@ -1,0 +1,7 @@
+- MENU START: ENTER + EXIT
+- SPRITES SIMPLES: PALAS + BOLA .PNG
+- MENU GAME OVER: CONTINUE + EXIT
+- MENU VICTORY: CONTINUE + EXIT
+- 11 points = GAMEOVER/VICTORY
+
+-- By Grup P1_G21: Canovas Sanchez, Jose Antonio; Parladé Salvans, Martí Xavier.
