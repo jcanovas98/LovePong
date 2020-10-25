@@ -5,4 +5,3 @@ function love.conf(t)
   t.title = "LovePong 2018"
 end
 
---HOLA GIT
