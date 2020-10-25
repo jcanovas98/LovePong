@@ -17,7 +17,6 @@ function Paddle:update(dt)
 end
 
 function Paddle:draw()
-  -- love.graphics.rectangle( "fill", self.paddleX, self.paddleY, paddleWidth, paddleHeight)
   love.graphics.draw(self.pinkPaddle, self.paddleX, self.paddleY, 0, paddleWidth, paddleHeight)
 end
 
